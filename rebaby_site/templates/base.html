@@ -1,0 +1,60 @@
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ReBaby — Seconde vie pour les petits</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/styles.css">
+  </head>
+  <body class="bg-gray-50 text-gray-800">
+    <nav class="bg-white shadow">
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="flex justify-between">
+          <a href="/" class="flex items-center gap-3 py-4">
+            <div class="bg-pink-200 rounded-full w-10 h-10 flex items-center justify-center text-pink-800 font-bold">RB</div>
+            <div class="text-lg font-semibold">ReBaby</div>
+          </a>
+          <div class="flex items-center gap-4">
+            <form action="/" method="get" class="hidden md:block">
+              <input name="q" placeholder="Rechercher..." class="px-3 py-2 border rounded-lg" />
+            </form>
+            {% if current_user.is_authenticated %}
+              <a href="/add" class="px-3 py-2 bg-pink-500 text-white rounded">Publier</a>
+              <a href="/logout" class="px-3 py-2">Se déconnecter</a>
+            {% else %}
+              <a href="/register" class="px-3 py-2">S'inscrire</a>
+              <a href="/login" class="px-3 py-2">Se connecter</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto p-6">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <div class="space-y-2 mb-4">
+            {% for cat, msg in messages %}
+              <div class="p-3 rounded-lg border" data-aos="fade-down">{{ msg }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer class="text-center py-8 text-sm text-gray-600">
+      © ReBaby — L'entreprise familiale. Donnez une seconde vie aux objets.
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({ duration: 650 });
+    </script>
+    <script src="/static/js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+
+{% extends 'base.html' %}
+{% block content %}
+  <section class="mb-8">
+    <div class="rounded-xl bg-gradient-to-r from-pink-50 to-white p-8" data-aos="zoom-in">
+      <h1 class="text-3xl font-bold">ReBaby — Donner une seconde vie aux affaires de bébé</h1>
+      <p class="mt-2 text-gray-600">Achetez ou louez du matériel pour les tout-petits — économique et responsable.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {% for item in items.items %}
+        <article class="bg-white rounded-lg shadow p-4" data-aos="fade-up">
+          {% if item.image_filename %}
+            <img src="/uploads/{{ item.image_filename }}" alt="{{ item.title }}" class="w-full h-48 object-cover rounded" />
+          {% else %}
+            <div class="w-full h-48 bg-gray-100 rounded flex items-center justify-center">Photo manquante</div>
+          {% endif %}
+          <h3 class="mt-3 font-semibold">{{ item.title }}</h3>
+          <p class="text-sm text-gray-500">{{ item.condition or '' }}</p>
+          <div class="mt-3 flex items-center justify-between">
+            <div class="text-lg font-bold">€{{ '%.2f'|format(item.price) }}</div>
+            <a href="/item/{{ item.id }}" class="px-3 py-1 bg-pink-500 text-white rounded">Voir</a>
+          </div>
+        </article>
+      {% else %}
+        <p>Aucune annonce pour le moment — soyez le premier !</p>
+      {% endfor %}
+    </div>
+
+    <div class="mt-6 flex justify-center">
+      {% if items.has_prev %}
+        <a href="?page={{ items.prev_num }}" class="px-3 py-1 border rounded mr-2">Préc</a>
+      {% endif %}
+      <span class="px-3 py-1">Page {{ items.page }} / {{ items.pages }}</span>
+      {% if items.has_next %}
+        <a href="?page={{ items.next_num }}" class="px-3 py-1 border rounded ml-2">Suiv</a>
+      {% endif %}
+    </div>
+  </section>
+{% endblock %}

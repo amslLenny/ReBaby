@@ -1,0 +1,25 @@
+
+{% extends 'base.html' %}
+{% block content %}
+  <div class="max-w-md mx-auto bg-white p-6 rounded shadow" data-aos="fade-right">
+    <h2 class="text-xl font-semibold">Créer un compte</h2>
+    <form method="post">
+      {{ form.hidden_tag() }}
+      <div class="mt-4">
+        {{ form.name.label }}
+        {{ form.name(class_='w-full px-3 py-2 border rounded') }}
+      </div>
+      <div class="mt-4">
+        {{ form.email.label }}
+        {{ form.email(class_='w-full px-3 py-2 border rounded') }}
+      </div>
+      <div class="mt-4">
+        {{ form.password.label }}
+        {{ form.password(class_='w-full px-3 py-2 border rounded') }}
+      </div>
+      <div class="mt-4">
+        {{ form.submit(class_='px-4 py-2 bg-pink-500 text-white rounded') }}
+      </div>
+    </form>
+  </div>
+{% endblock %}
