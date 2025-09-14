@@ -6,3 +6,4 @@ email-validator
 Werkzeug
 gunicorn
 Pillow==11.0.0
+psycopg2-binary
