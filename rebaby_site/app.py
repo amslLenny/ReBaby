@@ -9,12 +9,17 @@ from wtforms import StringField, PasswordField, SubmitField, TextAreaField, Deci
 from wtforms.validators import DataRequired, Length, Email, NumberRange
 from PIL import Image, UnidentifiedImageError
 import os, uuid
+import os
 
 ALLOWED_EXTENSIONS = {'png','jpg','jpeg','gif'}
 
 app = Flask(__name__, static_folder='static', template_folder='templates')
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY','dev-secret-change-me')
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL','sqlite:///rebaby.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
+if app.config['SQLALCHEMY_DATABASE_URI'].startswith("postgres://"):
+    app.config['SQLALCHEMY_DATABASE_URI'] = app.config['SQLALCHEMY_DATABASE_URI'].replace(
+        "postgres://", "postgresql://", 1
+    )
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['UPLOAD_FOLDER'] = os.path.join(app.root_path,'static','uploads')
 app.config['MAX_CONTENT_LENGTH'] = 5 * 1024 * 1024
@@ -22,6 +27,8 @@ app.config['MAX_CONTENT_LENGTH'] = 5 * 1024 * 1024
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
 db = SQLAlchemy(app)
+with app.app_context():
+    db.create_all()
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 
@@ -188,3 +195,7 @@ def init_db():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+with app.app_context():
+    from your_models_file import db  # adapte le nom du fichier où tu as db = SQLAlchemy(app)
+    db.create_all()

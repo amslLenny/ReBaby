@@ -1,7 +1,8 @@
-
-Flask>=2.0
+Flask
+Flask-SQLAlchemy
 Flask-Login
 Flask-WTF
-Flask-SQLAlchemy
-WTForms
-Pillow
+email-validator
+Werkzeug
+gunicorn
+Pillow==11.0.0
