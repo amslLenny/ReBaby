@@ -201,5 +201,4 @@ if __name__ == '__main__':
     app.run(debug=True)
 
 with app.app_context():
-    from your_models_file import db  # adapte le nom du fichier où tu as db = SQLAlchemy(app)
     db.create_all()
