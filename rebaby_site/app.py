@@ -15,11 +15,15 @@ ALLOWED_EXTENSIONS = {'png','jpg','jpeg','gif'}
 
 app = Flask(__name__, static_folder='static', template_folder='templates')
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY','dev-secret-change-me')
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
-if app.config['SQLALCHEMY_DATABASE_URI'].startswith("postgres://"):
-    app.config['SQLALCHEMY_DATABASE_URI'] = app.config['SQLALCHEMY_DATABASE_URI'].replace(
-        "postgres://", "postgresql://", 1
-    )
+uri = os.environ.get("DATABASE_URL")  # Render injecte l'URL ici
+if uri is None:
+    raise ValueError("⚠️ DATABASE_URL n'est pas défini dans les variables d'environnement")
+
+# Render donne parfois 'postgres://' au lieu de 'postgresql://'
+if uri.startswith("postgres://"):
+    uri = uri.replace("postgres://", "postgresql://", 1)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = uri
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['UPLOAD_FOLDER'] = os.path.join(app.root_path,'static','uploads')
 app.config['MAX_CONTENT_LENGTH'] = 5 * 1024 * 1024
