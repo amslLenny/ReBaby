@@ -1,2 +1,62 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+
+    /* ✅ Ajout du fond */
+    background: url("/static/img/baby-smile.jpg") no-repeat center center fixed;
+    background-size: cover;
+
+    /* Pour l’effet smooth quand on scroll */
+    min-height: 100vh;
+    overflow-x: hidden;
+}
 
 body { font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; }
+
+/* hero background (voile doux + parallax feel) */
+.hero {
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+/* fond léger pour donner du contraste */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.85));
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* image du bébé — positionnée et animable */
+.hero-baby {
+  position: absolute;
+  right: 6%;
+  bottom: -10%;
+  z-index: 5;
+  width: 40vmin;
+  max-width: 420px;
+  transform: translateY(0);
+  transition: transform 0.15s linear;
+}
+
+.hero-baby img {
+  width: 100%;
+  display: block;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .hero-baby {
+    right: 4%;
+    width: 55vmin;
+    bottom: -5%;
+  }
+}

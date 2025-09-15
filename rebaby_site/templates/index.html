@@ -1,6 +1,19 @@
 
 {% extends 'base.html' %}
 {% block content %}
+<section class="hero relative overflow-hidden">
+  <div class="hero-bg"></div>
+
+  <div class="container mx-auto py-20 text-center">
+    <h1 class="text-4xl font-bold" data-aos="fade-down">Bienvenue sur ReBaby</h1>
+    <p class="mt-4 text-lg text-gray-700" data-aos="fade-up">Donnez une seconde vie au matériel de bébé</p>
+  </div>
+
+  <div class="hero-baby pointer-events-none" data-aos="fade" aria-hidden="true">
+    <img src="{{ url_for('static', filename='img/baby-smile.jpg') }}" alt="bébé qui sourit" />
+  </div>
+</section>
+
   <section class="mb-8">
     <div class="rounded-xl bg-gradient-to-r from-pink-50 to-white p-8" data-aos="zoom-in">
       <h1 class="text-3xl font-bold">ReBaby — Donner une seconde vie aux affaires de bébé</h1>
