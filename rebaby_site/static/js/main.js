@@ -63,3 +63,15 @@ window.addEventListener("click", (e) => {
     overlay.style.visibility = "hidden";
   }
 });
+
+// ✅ Parallax léger sur l'image de fond (hero)
+(function() {
+  const heroBg = document.querySelector('.hero-bg');
+  if (!heroBg) return;
+
+  window.addEventListener('scroll', () => {
+    const sc = window.scrollY || window.pageYOffset;
+    const offset = sc * 0.2; // vitesse (0.1 = lent, 0.3 = rapide)
+    heroBg.style.transform = `translateY(${offset}px) scale(1.05)`; 
+  }, { passive: true });
+})();
