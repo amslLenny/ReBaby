@@ -46,3 +46,10 @@ window.addEventListener('click', function(e){
     menu.setAttribute('aria-hidden','true');
   }
 });
+
+const hamburger = document.querySelector('.hamburger');
+const sideMenu = document.getElementById('sideMenu');
+
+hamburger.addEventListener('click', () => {
+    sideMenu.classList.toggle('open');
+});

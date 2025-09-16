@@ -11,9 +11,15 @@
   </head>
   <body class="bg-gray-50 text-gray-800">
     <header class="navbar">
+    <div class="side-menu" id="sideMenu">
+    <a href="#">Connexion</a>
+    <a href="#">Annonces</a>
+    <a href="#">Nous découvrir</a>
+    <a href="#">Contact</a>
+</div>
+
   <div class="logo">
     <img src="{{ url_for('static', filename='img/logo.png') }}" alt="ReBaby Logo">
-    <span class="site-title">ReBaby</span>
   </div>
 
   <!-- Menu hamburger -->
@@ -33,7 +39,6 @@
   <div class="nav-inner">
     <a class="nav-left" href="{{ url_for('index') }}">
       <img src="{{ url_for('static', filename='img/logo.png') }}" alt="ReBaby" class="nav-logo" />
-      <span class="nav-title">ReBaby</span>
     </a>
 
     <button id="hamburgerBtn" class="nav-hamburger" aria-controls="navMenu" aria-expanded="false" onclick="toggleMenu()">
