@@ -1,55 +1,65 @@
+console.log("ReBaby: script chargé");
 
-console.log('ReBaby: script chargé');
-window.addEventListener('load', ()=>{
-  document.querySelectorAll('img').forEach(img=>{
+// ✅ Fade-in sur les images au chargement
+window.addEventListener("load", () => {
+  document.querySelectorAll("img").forEach((img) => {
     img.style.opacity = 1;
   });
 });
 
-// AOS init (si pas déjà présent)
+// ✅ AOS init (si la librairie est chargée)
 if (window.AOS) {
   AOS.init({ duration: 800, once: true });
 }
 
-// Parallax-like: déplacer l'image bébé légèrement au scroll
-(function() {
-  const baby = document.querySelector('.hero-baby');
+// ✅ Parallax-like : bébé qui bouge au scroll
+(function () {
+  const baby = document.querySelector(".hero-baby");
   if (!baby) return;
-  window.addEventListener('scroll', () => {
-    const sc = window.scrollY || window.pageYOffset;
-    // on déplace verticalement proportionnellement au scroll (valeurs réglables)
-    const offset = Math.min(60, sc * 0.12);
-    baby.style.transform = `translateY(-${offset}px)`;
-  }, { passive: true });
+  window.addEventListener(
+    "scroll",
+    () => {
+      const sc = window.scrollY || window.pageYOffset;
+      const offset = Math.min(60, sc * 0.12);
+      baby.style.transform = `translateY(-${offset}px)`;
+    },
+    { passive: true }
+  );
 })();
 
+// ✅ MENU LATERAL + OVERLAY
 function toggleMenu() {
-  const menu = document.getElementById("navMenu");
-  menu.style.display = (menu.style.display === "block") ? "none" : "block";
-}
+  const sideMenu = document.getElementById("sideMenu");
+  const overlay = document.getElementById("overlay");
 
-function toggleMenu(){
-  const btn = document.getElementById('hamburgerBtn');
-  const menu = document.getElementById('navMenu');
-  const expanded = btn.getAttribute('aria-expanded') === 'true';
-  btn.setAttribute('aria-expanded', String(!expanded));
-  menu.style.display = expanded ? 'none' : 'block';
-  menu.setAttribute('aria-hidden', String(expanded));
-}
-window.addEventListener('click', function(e){
-  const menu = document.getElementById('navMenu');
-  const btn = document.getElementById('hamburgerBtn');
-  if(!menu || !btn) return;
-  if(menu.style.display === 'block' && !btn.contains(e.target) && !menu.contains(e.target)){
-    menu.style.display = 'none';
-    btn.setAttribute('aria-expanded','false');
-    menu.setAttribute('aria-hidden','true');
+  if (!sideMenu || !overlay) return;
+
+  sideMenu.classList.toggle("open");
+
+  if (sideMenu.classList.contains("open")) {
+    overlay.style.opacity = "1";
+    overlay.style.visibility = "visible";
+  } else {
+    overlay.style.opacity = "0";
+    overlay.style.visibility = "hidden";
   }
-});
+}
 
-const hamburger = document.querySelector('.hamburger');
-const sideMenu = document.getElementById('sideMenu');
+// ✅ Fermer si on clique sur l’overlay
+window.addEventListener("click", (e) => {
+  const sideMenu = document.getElementById("sideMenu");
+  const overlay = document.getElementById("overlay");
+  const hamburger = document.querySelector(".hamburger");
 
-hamburger.addEventListener('click', () => {
-    sideMenu.classList.toggle('open');
+  if (!sideMenu || !overlay || !hamburger) return;
+
+  if (
+    sideMenu.classList.contains("open") &&
+    !sideMenu.contains(e.target) &&
+    !hamburger.contains(e.target)
+  ) {
+    sideMenu.classList.remove("open");
+    overlay.style.opacity = "0";
+    overlay.style.visibility = "hidden";
+  }
 });

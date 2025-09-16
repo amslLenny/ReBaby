@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="fr">
   <head>
@@ -10,53 +9,33 @@
     <link rel="stylesheet" href="/static/css/styles.css">
   </head>
   <body class="bg-gray-50 text-gray-800">
+    
+    <!-- ✅ Header -->
     <header class="navbar">
-    <div class="side-menu" id="sideMenu">
-    <a href="#">Connexion</a>
-    <a href="#">Annonces</a>
-    <a href="#">Nous découvrir</a>
-    <a href="#">Contact</a>
-</div>
+      
+      <!-- ✅ Overlay (pour le fond noir semi-transparent quand le menu est ouvert) -->
+      <div class="overlay" id="overlay"></div>
 
-  <div class="logo">
-    <img src="{{ url_for('static', filename='img/logo.png') }}" alt="ReBaby Logo">
-  </div>
+      <!-- ✅ Menu latéral -->
+      <div class="side-menu" id="sideMenu">
+        <a href="{{ url_for('login') }}">Connexion</a>
+        <a href="{{ url_for('index') }}">Annonces</a>
+        <a href="/about">Nous découvrir</a>
+        <a href="/contact">Contact</a>
+      </div>
 
-  <!-- Menu hamburger -->
-  <div class="hamburger" onclick="toggleMenu()">
-    &#9776; <!-- symbole des 3 traits -->
-  </div>
+      <!-- ✅ Logo -->
+      <div class="logo">
+        <img src="{{ url_for('static', filename='img/logo.png') }}" alt="ReBaby Logo">
+      </div>
 
-  <!-- Menu caché -->
-  <nav class="nav-menu" id="navMenu">
-    <a href="/login">Connexion</a>
-    <a href="/annonces">Annonces</a>
-    <a href="/about">Nous découvrir</a>
-    <a href="/contact">Contact</a>
-  </nav>
-</header>
-    <nav class="site-nav">
-  <div class="nav-inner">
-    <a class="nav-left" href="{{ url_for('index') }}">
-      <img src="{{ url_for('static', filename='img/logo.png') }}" alt="ReBaby" class="nav-logo" />
-    </a>
+      <!-- ✅ Bouton hamburger -->
+      <div class="hamburger" onclick="toggleMenu()">
+        &#9776;
+      </div>
+    </header>
 
-    <button id="hamburgerBtn" class="nav-hamburger" aria-controls="navMenu" aria-expanded="false" onclick="toggleMenu()">
-      <span class="hamb-line"></span>
-      <span class="hamb-line"></span>
-      <span class="hamb-line"></span>
-    </button>
-
-    <div id="navMenu" class="nav-menu" aria-hidden="true">
-      <a href="{{ url_for('login') }}">Connexion</a>
-      <a href="{{ url_for('index') }}">Annonces</a>
-      <a href="/about">Nous découvrir</a>
-      <a href="/contact">Contact</a>
-    </div>
-  </div>
-</nav>
-
-
+    <!-- ✅ Contenu principal -->
     <main class="max-w-6xl mx-auto p-6">
       {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
@@ -71,10 +50,12 @@
       {% block content %}{% endblock %}
     </main>
 
+    <!-- ✅ Footer -->
     <footer class="text-center py-8 text-sm text-gray-600">
       © ReBaby — L'entreprise familiale. Donnez une seconde vie aux objets.
     </footer>
 
+    <!-- ✅ Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
       AOS.init({ duration: 650 });
