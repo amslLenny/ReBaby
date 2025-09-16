@@ -10,28 +10,47 @@
     <link rel="stylesheet" href="/static/css/styles.css">
   </head>
   <body class="bg-gray-50 text-gray-800">
-    <nav class="bg-white shadow">
-      <div class="max-w-6xl mx-auto px-4">
-        <div class="flex justify-between">
-          <a href="/" class="flex items-center gap-3 py-4">
-            <div class="bg-pink-200 rounded-full w-10 h-10 flex items-center justify-center text-pink-800 font-bold">RB</div>
-            <div class="text-lg font-semibold">ReBaby</div>
-          </a>
-          <div class="flex items-center gap-4">
-            <form action="/" method="get" class="hidden md:block">
-              <input name="q" placeholder="Rechercher..." class="px-3 py-2 border rounded-lg" />
-            </form>
-            {% if current_user.is_authenticated %}
-              <a href="/add" class="px-3 py-2 bg-pink-500 text-white rounded">Publier</a>
-              <a href="/logout" class="px-3 py-2">Se déconnecter</a>
-            {% else %}
-              <a href="/register" class="px-3 py-2">S'inscrire</a>
-              <a href="/login" class="px-3 py-2">Se connecter</a>
-            {% endif %}
-          </div>
-        </div>
-      </div>
-    </nav>
+    <header class="navbar">
+  <div class="logo">
+    <img src="{{ url_for('static', filename='img/logo.png') }}" alt="ReBaby Logo">
+    <span class="site-title">ReBaby</span>
+  </div>
+
+  <!-- Menu hamburger -->
+  <div class="hamburger" onclick="toggleMenu()">
+    &#9776; <!-- symbole des 3 traits -->
+  </div>
+
+  <!-- Menu caché -->
+  <nav class="nav-menu" id="navMenu">
+    <a href="/login">Connexion</a>
+    <a href="/annonces">Annonces</a>
+    <a href="/about">Nous découvrir</a>
+    <a href="/contact">Contact</a>
+  </nav>
+</header>
+    <nav class="site-nav">
+  <div class="nav-inner">
+    <a class="nav-left" href="{{ url_for('index') }}">
+      <img src="{{ url_for('static', filename='img/logo.png') }}" alt="ReBaby" class="nav-logo" />
+      <span class="nav-title">ReBaby</span>
+    </a>
+
+    <button id="hamburgerBtn" class="nav-hamburger" aria-controls="navMenu" aria-expanded="false" onclick="toggleMenu()">
+      <span class="hamb-line"></span>
+      <span class="hamb-line"></span>
+      <span class="hamb-line"></span>
+    </button>
+
+    <div id="navMenu" class="nav-menu" aria-hidden="true">
+      <a href="{{ url_for('login') }}">Connexion</a>
+      <a href="{{ url_for('index') }}">Annonces</a>
+      <a href="/about">Nous découvrir</a>
+      <a href="/contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
 
     <main class="max-w-6xl mx-auto p-6">
       {% with messages = get_flashed_messages(with_categories=true) %}
