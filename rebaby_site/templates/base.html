@@ -54,21 +54,7 @@
   </div>
 </section>
 
-    <!-- ✅ Contenu principal -->
-    <main class="max-w-6xl mx-auto p-6">
-      {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-          <div class="space-y-2 mb-4">
-            {% for cat, msg in messages %}
-              <div class="p-3 rounded-lg border" data-aos="fade-down">{{ msg }}</div>
-            {% endfor %}
-          </div>
-        {% endif %}
-      {% endwith %}
-
-      {% block content %}{% endblock %}
-    </main>
-
+  
     <!-- ✅ Footer -->
     <footer class="text-center py-8 text-sm text-gray-600">
       © ReBaby — L'entreprise familiale. Donnez une seconde vie aux objets.
