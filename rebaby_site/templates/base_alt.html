@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Rebaby — Version Alt</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles_alt.css') }}">
+  </head>
+  <body>
+
+    <!-- Bandeau supérieur -->
+    <div class="top-bar">
+      <span>✔ Écoresponsable</span>
+      <span>✔ Prix abordables</span>
+      <span>✔ Produits de qualité</span>
+    </div>
+
+    <!-- Header principal -->
+    <header class="main-header">
+      <h1 class="site-title">Rebaby</h1>
+      <nav class="main-nav">
+        <a href="{{ url_for('index') }}" class="active">Accueil</a>
+        <a href="#">Boutique</a>
+        <a href="{{ url_for('login') }}">Connexion</a>
+        <a href="#">Notre histoire</a>
+        <a href="#">Contact</a>
+      </nav>
+      <div class="header-icons">
+        <span>♡</span>
+        <span>🛒</span>
+        <span>➕</span>
+      </div>
+    </header>
+
+    <!-- Section bienvenue -->
+    <section class="welcome">
+      <h2>Bienvenue chez Rebaby</h2>
+      <p>
+        Chez Rebaby, nous proposons des affaires de bébé de seconde main 
+        écoresponsables à des prix abordables. Faites un geste pour 
+        l'environnement tout en faisant des économies !
+      </p>
+    </section>
+
+    <!-- Contenu principal -->
+    <main>
+      {% block content %}
+      <section class="annonces">
+        <h2>Annonces</h2>
+        <p>Ici apparaîtront les annonces…</p>
+      </section>
+      {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      © Rebaby — Donnez une seconde vie aux objets.
+    </footer>
+  </body>
+</html>

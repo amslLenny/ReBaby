@@ -1,0 +1,99 @@
+/* Style version ALT (inspiré maquette) */
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background: #f9f9f9;
+  color: #444;
+}
+
+/* Bandeau du haut */
+.top-bar {
+  background: #a55b52;
+  color: white;
+  text-align: center;
+  padding: 5px;
+  font-size: 14px;
+}
+.top-bar span {
+  margin: 0 10px;
+}
+
+/* Header */
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background: white;
+  border-bottom: 1px solid #ddd;
+}
+.site-title {
+  font-size: 28px;
+  color: #a55b52;
+  margin: 0;
+  font-weight: normal;
+}
+
+/* Navigation */
+.main-nav {
+  flex-grow: 1;
+  text-align: center;
+}
+.main-nav a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: #444;
+  font-size: 16px;
+}
+.main-nav a.active,
+.main-nav a:hover {
+  color: #a55b52;
+  font-weight: bold;
+  border-bottom: 2px solid #a55b52;
+  padding-bottom: 3px;
+}
+
+/* Icônes à droite */
+.header-icons {
+  font-size: 18px;
+  display: flex;
+  gap: 15px;
+}
+
+/* Section bienvenue */
+.welcome {
+  text-align: center;
+  padding: 40px 20px;
+}
+.welcome h2 {
+  font-size: 32px;
+  color: #a55b52;
+  margin-bottom: 10px;
+}
+.welcome p {
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Annonces */
+.annonces {
+  text-align: center;
+  padding: 40px 20px;
+}
+.annonces h2 {
+  font-size: 28px;
+  color: #a55b52;
+  margin-bottom: 20px;
+}
+
+/* Footer */
+.site-footer {
+  text-align: center;
+  padding: 20px;
+  background: #fff;
+  border-top: 1px solid #ddd;
+  margin-top: 40px;
+  font-size: 14px;
+  color: #666;
+}

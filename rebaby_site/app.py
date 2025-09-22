@@ -197,6 +197,13 @@ def init_db():
     db.create_all()
     print('Database created')
 
+from flask import render_template
+
+@app.route("/alt")
+def alt_home():
+    return render_template("base_alt.html")
+
+
 if __name__ == '__main__':
     app.run(debug=True)
 
